@@ -4,6 +4,7 @@
 /home/datos/Documentos/Programación/YoProgramo/Portfolio 01/BackEnd/src/main/java/BackEnd/controller/PersonaController.java
 /home/datos/Documentos/Programación/YoProgramo/Portfolio 01/BackEnd/src/main/java/BackEnd/service/IDisciplinaService.java
 /home/datos/Documentos/Programación/YoProgramo/Portfolio 01/BackEnd/src/main/java/BackEnd/service/IFormacionService.java
+/home/datos/Documentos/Programación/YoProgramo/Portfolio 01/BackEnd/src/main/java/BackEnd/controller/FiltroAutorizacion.java
 /home/datos/Documentos/Programación/YoProgramo/Portfolio 01/BackEnd/src/main/java/BackEnd/controller/SesionController.java
 /home/datos/Documentos/Programación/YoProgramo/Portfolio 01/BackEnd/src/main/java/BackEnd/model/Formacion.java
 /home/datos/Documentos/Programación/YoProgramo/Portfolio 01/BackEnd/src/main/java/BackEnd/controller/FormacionController.java

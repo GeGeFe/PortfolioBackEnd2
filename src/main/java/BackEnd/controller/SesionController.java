@@ -9,8 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 
 /**
  *
@@ -18,39 +24,26 @@ import java.util.Date;
  */
 @RestController
 public class SesionController {
+
     @PostMapping("/sesionInicioIrrestricto")
-    public Usuario sesion(@RequestBody Usuario miusuario){
+    public Usuario sesion(@RequestBody Usuario miusuario) {
+
+        String secretKey = "mySecretKey";
+ 	List<GrantedAuthority> grantedAuthorities = AuthorityUtils
+	.commaSeparatedStringToAuthorityList("ROLE_USER");
         
-	String secretKey = "mySecretKey";
-        String token = Jwts.builder()
-				.setId("softtekJWT")
-				.setSubject(miusuario.getUsername())
-/*				.claim("authorities",
-						grantedAuthorities.stream()
-								.map(GrantedAuthority::getAuthority)
-								.collect(Collectors.toList()))*/
-				.setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + 600000))
-				.signWith(SignatureAlgorithm.HS512,
-						secretKey.getBytes()).compact();        
+        String token = "Bearer " + Jwts.builder()
+                .setId("softtekJWT")
+                .setSubject(miusuario.getUsername())
+                .claim("authorities",
+			grantedAuthorities.stream()
+			.map(GrantedAuthority::getAuthority)
+			.collect(Collectors.toList()))
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 600000))
+                .signWith(SignatureAlgorithm.HS512,
+                        secretKey.getBytes()).compact();
         miusuario.setToken(token);
         return miusuario;
     }
-/*    @PostMapping("/sesionInicioIrrestricto")
-    public ResponseEntity sesion(
-            @RequestParam("username") String username,
-            @RequestParam("password") String password
-            ){
-//       return new ResponseEntity("{\"msg\":\"¡¡¡Dale pa delante no más!!!\"}",null, HttpStatus.OK);
-       return new ResponseEntity("{\"msg\":\"¡¡¡Dale pa delante no más!!!\"}",null, HttpStatus.OK);
-    }*/
-    
-/*    @RequestMapping(value = "/sesionInicioIrrestricto", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity sesion(
-            @RequestParam("username") String username,
-            @RequestParam("password") String password
-            ){
-//       return new ResponseEntity("{\"msg\":\"¡¡¡Dale pa delante no más!!!\"}",null, HttpStatus.OK);
-       return new ResponseEntity("{\"msg\":\"¡¡¡Dale pa delante no más!!!\"}",null, HttpStatus.OK);
-    }*/
 }
