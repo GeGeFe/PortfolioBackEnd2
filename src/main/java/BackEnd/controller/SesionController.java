@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.jsonwebtoken.*;
+import java.util.Date;
+
 /**
  *
  * @author gabriel
@@ -17,7 +20,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class SesionController {
     @PostMapping("/sesionInicioIrrestricto")
     public Usuario sesion(@RequestBody Usuario miusuario){
-        miusuario.setToken("124safde238GGdSAFA.quedificillpm.fasjfdkjadslkf");
+        
+	String secretKey = "mySecretKey";
+        String token = Jwts.builder()
+				.setId("softtekJWT")
+				.setSubject(miusuario.getUsername())
+/*				.claim("authorities",
+						grantedAuthorities.stream()
+								.map(GrantedAuthority::getAuthority)
+								.collect(Collectors.toList()))*/
+				.setIssuedAt(new Date(System.currentTimeMillis()))
+				.setExpiration(new Date(System.currentTimeMillis() + 600000))
+				.signWith(SignatureAlgorithm.HS512,
+						secretKey.getBytes()).compact();        
+        miusuario.setToken(token);
         return miusuario;
     }
 /*    @PostMapping("/sesionInicioIrrestricto")
