@@ -10,14 +10,11 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-
-
 // Esta clase esta agregada para desactivar CORS. Ver de eliminar cuando se implemente versión final.
-
 /**
  *
  * @author gabriel
-*/
+ */
 @Configuration
 public class ConfiguracionCORS {
 
@@ -27,7 +24,11 @@ public class ConfiguracionCORS {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
+                        .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS")
+                        .allowedOrigins("http://localhost:4200")
+                        .allowedOrigins("*")
+                        .allowedHeaders("Content-Type", "Accept", "X-Requested-With", "remember-me", "authorization")
+                        ;// .allowCredentials(true);
             }
         };
     }
