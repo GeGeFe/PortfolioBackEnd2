@@ -14,7 +14,7 @@ import java.util.List;
 public interface IFormacionService {
 
     public List<Formacion> getFormacion();
-    
+
     public void saveFormacion(Formacion formacion);
 
     public void deleteFormacion(Integer id);

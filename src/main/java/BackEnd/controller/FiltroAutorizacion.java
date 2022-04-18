@@ -26,58 +26,61 @@ import org.springframework.beans.factory.annotation.Value;
  * @author gabriel
  */
 public class FiltroAutorizacion extends OncePerRequestFilter {
-    private final String HEADER = "Authorization";
-	private final String PREFIX = "Bearer ";
- 
-        @Value("${jwt.secret}") // jwt.secret está definido en application.properties
-	private String SECRET;
 
-	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-		try {
-			if (existeJWTToken(request, response)) {
-				Claims claims = validateToken(request);
-				if (claims.get("authorities") != null) {
-					setUpSpringAuthentication(claims);
-				} else {
-					SecurityContextHolder.clearContext();
-				}
-			} else {
-					SecurityContextHolder.clearContext();
-			}
-			chain.doFilter(request, response);
-		} catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException e) {
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-			((HttpServletResponse) response).sendError(HttpServletResponse.SC_FORBIDDEN, e.getMessage());
-			return;
-		}
-	}	
+    private final String HEADER = "authorization";
+    private final String PREFIX = "Bearer ";
 
-	private Claims validateToken(HttpServletRequest request) {
-		String jwtToken = request.getHeader(HEADER).replace(PREFIX, "");
-		return Jwts.parser().setSigningKey(SECRET.getBytes()).parseClaimsJws(jwtToken).getBody();
-	}
+    @Value("${jwt.secret}") // jwt.secret está definido en application.properties
+    private String SECRET;
 
-	/**
-	 * Metodo para autenticarnos dentro del flujo de Spring
-	 * 
-	 * @param claims
-	 */
-	private void setUpSpringAuthentication(Claims claims) {
-		@SuppressWarnings("unchecked")
-		List<String> authorities = (List) claims.get("authorities");
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
+        try {
+            if (existeJWTToken(request, response)) {
+                response.addHeader("Access-Control-Allow-Headers", "authorization");
+                Claims claims = validateToken(request);
+                if (claims.get("authorities") != null) {
+                    setUpSpringAuthentication(claims);
+                } else {
+                    SecurityContextHolder.clearContext();
+                }
+            } else {
+                SecurityContextHolder.clearContext();
+            }
+            chain.doFilter(request, response);
+        } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException e) {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            ((HttpServletResponse) response).sendError(HttpServletResponse.SC_FORBIDDEN, e.getMessage());
+//            return;
+        }
+    }
 
-		UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(claims.getSubject(), null,
-				authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
-		SecurityContextHolder.getContext().setAuthentication(auth);
+    private Claims validateToken(HttpServletRequest request) {
+        String jwtToken = request.getHeader(HEADER).replace(PREFIX, "");
+        return Jwts.parser().setSigningKey(SECRET.getBytes()).parseClaimsJws(jwtToken).getBody();
+    }
 
-	}
+    /**
+     * Metodo para autenticarnos dentro del flujo de Spring
+     *
+     * @param claims
+     */
+    private void setUpSpringAuthentication(Claims claims) {
+        @SuppressWarnings("unchecked")
+        List<String> authorities = (List) claims.get("authorities");
 
-	private boolean existeJWTToken(HttpServletRequest request, HttpServletResponse res) {
-		String authenticationHeader = request.getHeader(HEADER);
-		if (authenticationHeader == null || !authenticationHeader.startsWith(PREFIX))
-			return false;
-		return true;
-	}
+        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(claims.getSubject(), null,
+                authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
+        SecurityContextHolder.getContext().setAuthentication(auth);
+
+    }
+
+    private boolean existeJWTToken(HttpServletRequest request, HttpServletResponse res) {
+        String authenticationHeader = request.getHeader(HEADER);
+        if (authenticationHeader == null || !authenticationHeader.startsWith(PREFIX)) {
+            return false;
+        }
+        return true;
+    }
 
 }

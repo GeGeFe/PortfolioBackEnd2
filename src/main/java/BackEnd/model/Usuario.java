@@ -9,12 +9,14 @@ package BackEnd.model;
  * @author gabriel
  */
 public class Usuario {
+
     String username;
     String password;
     String token;
 
-    public Usuario(){}
-    
+    public Usuario() {
+    }
+
     public Usuario(String username, String password) {
         this.username = username;
         this.password = password;
@@ -36,11 +38,12 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    public void setToken(String token){
-        this.token=token;
+
+    public void setToken(String token) {
+        this.token = token;
     }
-    public String getToken(){
+
+    public String getToken() {
         return this.token;
-    }    
+    }
 }

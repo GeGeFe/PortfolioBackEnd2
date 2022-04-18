@@ -60,15 +60,15 @@ public class Formacion implements Serializable {
     private Persona id_persona;
 
     public Formacion() {
-        this.id_educacion=0;
-        this.id_educacion=0;
-        this.id_persona= new Persona();
-        this.Fecha_Final=new Date();
-        this.Fecha_Inicio=new Date();
-        this.Institucion="";
-        this.Logo="";
-        this.Tipo=TipoFormacion.Primaria;
-        this.Titulo="";
+        this.id_educacion = 0;
+        this.id_educacion = 0;
+        this.id_persona = new Persona();
+        this.Fecha_Final = new Date();
+        this.Fecha_Inicio = new Date();
+        this.Institucion = "";
+        this.Logo = "";
+        this.Tipo = TipoFormacion.Primaria;
+        this.Titulo = "";
     }
 
 }

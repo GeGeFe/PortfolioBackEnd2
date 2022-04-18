@@ -33,12 +33,11 @@ public class PersonaController {
         return ServicioPersona.getPersonas();
     }
 
-    
     @GetMapping("/personas/traer/{id}")
     public Persona getPersona(@PathVariable Integer id) {
         return ServicioPersona.findPersona(id);
     }
-    
+
     @PostMapping("/personas/crear")
     public String createPersona(@RequestBody Persona perso) {
         System.out.println(perso);
@@ -59,15 +58,15 @@ public class PersonaController {
             @RequestParam("fecha_nacimiento") Date nuevaFecha,
             @RequestParam("banner") String nuevoBanner,
             @RequestParam("avatar") String nuevoAvatar,
-            @RequestParam("acerca_de") String nuevoAcercade            
+            @RequestParam("acerca_de") String nuevoAcercade
     ) {
         Persona perso = ServicioPersona.findPersona(id);
-        
+
         perso.setApellido(nuevoApellido);
         perso.setNombre(nuevoNombre);
         perso.setFecha_Nacimiento(nuevaFecha);
-        
+
         ServicioPersona.savePersona(perso);
         return perso;
-    }    
+    }
 }

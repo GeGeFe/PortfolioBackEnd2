@@ -30,7 +30,7 @@ public class Disciplina implements Serializable {
     public Disciplina() {
     }
 
-/*    public Disciplina(String Nombre) {
+    /*    public Disciplina(String Nombre) {
         this.Nombre = Nombre;
     }*/
 }

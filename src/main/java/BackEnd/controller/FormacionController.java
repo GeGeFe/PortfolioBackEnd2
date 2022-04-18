@@ -69,7 +69,7 @@ public class FormacionController {
         formacion.setInstitucion(nuevaInstitucion);
         formacion.setTitulo(nuevoTitulo);
         formacion.setTipo(nuevoTipo);
-                
+
         ServicioFormacion.saveFormacion(formacion);
         return formacion;
     }

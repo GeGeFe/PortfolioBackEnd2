@@ -39,16 +39,16 @@ public class Persona implements Serializable {
     private String Acerca_de;
 
     public Persona() {
-        this.Acerca_de="";
-        this.Apellido="";
-        this.Avatar="";
-        this.Banner="";
-        this.Fecha_Nacimiento= new Date();
-        this.Nombre= "";
-        this.formacion= null;
-        this.id_persona=0;
+        this.Acerca_de = "";
+        this.Apellido = "";
+        this.Avatar = "";
+        this.Banner = "";
+        this.Fecha_Nacimiento = new Date();
+        this.Nombre = "";
+        this.formacion = null;
+        this.id_persona = 0;
     }
 
-    @OneToMany(mappedBy="id_persona", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "id_persona", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Formacion> formacion;
 }
