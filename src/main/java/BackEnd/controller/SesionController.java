@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  *
@@ -32,6 +33,7 @@ public class SesionController {
     @Value("${jwt.expiration}") // jwt.expiration está definido en application.properties
     private int expiration;
 
+    @CrossOrigin
     @PostMapping("/sesionInicioIrrestricto")
     public Usuario sesion(@RequestBody Usuario miusuario) {
 

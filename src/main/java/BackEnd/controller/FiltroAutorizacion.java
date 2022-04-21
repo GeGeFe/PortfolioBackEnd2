@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Value;
  */
 public class FiltroAutorizacion extends OncePerRequestFilter {
 
-    private final String HEADER = "authorization";
+    private final String HEADER = "Authorization";
     private final String PREFIX = "Bearer ";
 
     @Value("${jwt.secret}") // jwt.secret está definido en application.properties
@@ -37,7 +37,7 @@ public class FiltroAutorizacion extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         try {
             if (existeJWTToken(request, response)) {
-                response.addHeader("Access-Control-Allow-Headers", "authorization");
+                response.addHeader("Access-Control-Allow-Headers", "Authorization");
                 Claims claims = validateToken(request);
                 if (claims.get("authorities") != null) {
                     setUpSpringAuthentication(claims);
