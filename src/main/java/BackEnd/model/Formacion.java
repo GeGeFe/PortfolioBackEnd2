@@ -5,6 +5,7 @@
 package BackEnd.model;
 
 // Para que funcione Entity hay que importarlo de javax y no de spring. Lo mismo con GeneratedValue, GenerationType e Id.
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
@@ -38,7 +39,7 @@ public class Formacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id_educacion;
-    @Column(columnDefinition = "ENUM('Primaria', 'Secundaria', 'Terciaria', 'Universitaria', 'Curso/Capacitación')")
+    @Column(columnDefinition = "ENUM('Primaria', 'Secundaria', 'Terciaria', 'Universitaria', 'Curso_Capacitación')")
     @Enumerated(EnumType.STRING)
     private TipoFormacion Tipo;
     private String Titulo;
@@ -48,18 +49,17 @@ public class Formacion implements Serializable {
     private Date Fecha_Final;
     private String Logo;
     private String Institucion;
-//    private Integer persona_id_persona;
-//    private Integer disciplina_id_disciplina;
 
     @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "id_disciplina")
     private Disciplina id_disciplina;
 
+    @JsonBackReference
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "id_persona")
     private Persona id_persona;
 
-    public Formacion() {
+/*    public Formacion() {
         this.id_educacion = 0;
         this.id_educacion = 0;
         this.id_persona = new Persona();
@@ -69,6 +69,6 @@ public class Formacion implements Serializable {
         this.Logo = "";
         this.Tipo = TipoFormacion.Primaria;
         this.Titulo = "";
-    }
+    }*/
 
 }
