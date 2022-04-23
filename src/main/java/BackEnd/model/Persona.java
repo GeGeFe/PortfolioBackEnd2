@@ -5,6 +5,7 @@
 package BackEnd.model;
 
 // Para que funcione Entity hay que importarlo de javax y no de spring. Lo mismo con GeneratedValue, GenerationType e Id.
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -48,7 +49,7 @@ public class Persona implements Serializable {
         this.formacion = null;
         this.id_persona = 0;
     }
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "id_persona", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Formacion> formacion;
 }
