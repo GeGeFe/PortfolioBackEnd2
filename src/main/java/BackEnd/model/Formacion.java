@@ -59,7 +59,7 @@ public class Formacion implements Serializable {
     @JoinColumn(name = "id_persona")
     private Persona id_persona;
 
-/*    public Formacion() {
+    /*    public Formacion() {
         this.id_educacion = 0;
         this.id_educacion = 0;
         this.id_persona = new Persona();
@@ -70,5 +70,4 @@ public class Formacion implements Serializable {
         this.Tipo = TipoFormacion.Primaria;
         this.Titulo = "";
     }*/
-
 }

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package BackEnd;
+ package BackEnd;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  *
  * @author gabriel
  */
-//@Configuration
+@Configuration
 public class ConfiguracionCORS {
 
     @Bean
@@ -24,12 +24,13 @@ public class ConfiguracionCORS {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH")
+                        .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS")
                         .allowedOrigins("*")
-//                        .allowedOrigins("http://localhost:4200/**")
-                        //.allowedHeaders("Content-Type", "Accept", "X-Requested-With", "remember-me", "authorization")
+                        //.allowedHeaders("Content-Type", "Accept", "X-Requested-With", "remember-me", "Authorization")
                         .allowedHeaders("*")
-                        .allowCredentials(false); //Con esto activado o en false deja de funcionar todo.
+//                        .allowCredentials(false)
+//                        .exposedHeaders("Access-Control-Allow-Origin: *")
+                        ;
             }
         };
     }

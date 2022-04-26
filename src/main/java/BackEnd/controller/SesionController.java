@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
  * @author gabriel
  */
 @RestController
+//@CrossOrigin(origins = "http://localhost:4200")
 public class SesionController {
 
     @Value("${jwt.secret}") // jwt.secret está definido en application.properties
@@ -33,7 +34,6 @@ public class SesionController {
     @Value("${jwt.expiration}") // jwt.expiration está definido en application.properties
     private int expiration;
 
-    @CrossOrigin
     @PostMapping("/sesionInicioIrrestricto")
     public Usuario sesion(@RequestBody Usuario miusuario) {
 

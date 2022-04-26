@@ -20,11 +20,13 @@ import io.jsonwebtoken.*;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author gabriel
  */
+@Component
 public class FiltroAutorizacion extends OncePerRequestFilter {
 
     private final String HEADER = "Authorization";
@@ -38,6 +40,7 @@ public class FiltroAutorizacion extends OncePerRequestFilter {
         try {
             if (existeJWTToken(request, response)) {
                 response.addHeader("Access-Control-Allow-Headers", "Authorization");
+                response.addHeader("Access-Control-Allow-Origin", "http://localhost:4200");
                 Claims claims = validateToken(request);
                 if (claims.get("authorities") != null) {
                     setUpSpringAuthentication(claims);
