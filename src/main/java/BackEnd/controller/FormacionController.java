@@ -52,6 +52,7 @@ public class FormacionController {
         return "La formacion fue creada correctamente";
     }
 
+    @CrossOrigin
     @DeleteMapping("/formacion/borrar/{id}")
     public String deleteFormacion(@PathVariable Integer id) {
         ServicioFormacion.deleteFormacion(id);

@@ -43,6 +43,8 @@ public class BackEnd {
                     //                    .antMatchers(HttpMethod.POST, "/formacion/crear").permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/personas/*/agregarFormacion").permitAll()
                     .antMatchers(HttpMethod.POST, "/personas/*/agregarFormacion").permitAll()
+                    .antMatchers(HttpMethod.OPTIONS, "/formacion/borrar/*").permitAll()             
+                    .antMatchers(HttpMethod.DELETE, "/formacion/borrar/*").permitAll()                    
                     .anyRequest().authenticated();
             http.addFilterAfter(filtroAutorizacion, UsernamePasswordAuthenticationFilter.class);
         }
