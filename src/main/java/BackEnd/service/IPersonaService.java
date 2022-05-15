@@ -4,6 +4,7 @@
  */
 package BackEnd.service;
 
+import BackEnd.model.Formacion;
 import BackEnd.model.Persona;
 import java.util.List;
 
@@ -20,4 +21,7 @@ public interface IPersonaService {
     public void deletePersona(Integer id);
 
     public Persona findPersona(Integer id);
+    
+    public void agregarFormacion(Formacion unaFormacion);
+    
 }

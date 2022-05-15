@@ -22,7 +22,7 @@ public class BackEnd {
 
     @Autowired
     FiltroAutorizacion filtroAutorizacion;
-    
+
     @EnableWebSecurity
     @Configuration
     class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -37,8 +37,12 @@ public class BackEnd {
                     .antMatchers(HttpMethod.GET, "/personas/traer").permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/personas/traer/*").permitAll()
                     .antMatchers(HttpMethod.GET, "/personas/traer/*").permitAll()
-                    .antMatchers(HttpMethod.OPTIONS, "/disciplina/traer").permitAll()                  
+                    .antMatchers(HttpMethod.OPTIONS, "/disciplina/traer").permitAll()
                     .antMatchers(HttpMethod.GET, "/disciplina/traer").permitAll()
+                    //                    .antMatchers(HttpMethod.OPTIONS, "/formacion/crear").permitAll()
+                    //                    .antMatchers(HttpMethod.POST, "/formacion/crear").permitAll()
+                    .antMatchers(HttpMethod.OPTIONS, "/personas/*/agregarFormacion").permitAll()
+                    .antMatchers(HttpMethod.POST, "/personas/*/agregarFormacion").permitAll()
                     .anyRequest().authenticated();
             http.addFilterAfter(filtroAutorizacion, UsernamePasswordAuthenticationFilter.class);
         }

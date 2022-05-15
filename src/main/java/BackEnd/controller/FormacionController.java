@@ -6,11 +6,13 @@ package BackEnd.controller;
 
 import BackEnd.model.Formacion;
 import BackEnd.model.Formacion.TipoFormacion;
+import BackEnd.model.Persona;
 import BackEnd.service.IFormacionService;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,8 +42,12 @@ public class FormacionController {
         return ServicioFormacion.findFormacion(id);
     }
 
+    @CrossOrigin
     @PostMapping("/formacion/crear")
     public String createFormacion(@RequestBody Formacion formacion) {
+/*        Persona mierda = new Persona();
+        mierda.setId_persona(1);
+        formacion.setId_persona(mierda);*/
         ServicioFormacion.saveFormacion(formacion);
         return "La formacion fue creada correctamente";
     }

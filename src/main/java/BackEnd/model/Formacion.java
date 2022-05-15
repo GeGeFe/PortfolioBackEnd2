@@ -52,7 +52,7 @@ public class Formacion implements Serializable {
 
     @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "id_disciplina")
-    private Disciplina id_disciplina;
+    private Disciplina disciplina;
 
     @JsonBackReference
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})

@@ -4,6 +4,7 @@
  */
 package BackEnd.controller;
 
+import BackEnd.model.Formacion;
 import BackEnd.model.Persona;
 import BackEnd.service.IPersonaService;
 import java.util.Date;
@@ -72,4 +73,14 @@ public class PersonaController {
         ServicioPersona.savePersona(perso);
         return perso;
     }
+
+    @CrossOrigin
+    @PostMapping("/personas/{id}/agregarFormacion")
+    public String agregarFormacion(@PathVariable Integer id,@RequestBody Formacion unaFormacion) {
+        System.out.println(unaFormacion);
+        unaFormacion.setId_persona(ServicioPersona.findPersona(id));
+        ServicioPersona.agregarFormacion(unaFormacion);
+        return "La formacion fue agregada correctamente";
+    }
+
 }
