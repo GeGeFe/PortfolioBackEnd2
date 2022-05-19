@@ -4,8 +4,10 @@
  */
 package BackEnd.service;
 
+import BackEnd.model.Experiencia;
 import BackEnd.model.Formacion;
 import BackEnd.model.Persona;
+import BackEnd.repository.ExperienciaRepository;
 import BackEnd.repository.FormacionRepository;
 import BackEnd.repository.PersonaRepository;
 import java.util.List;
@@ -24,6 +26,9 @@ public class PersonaService implements IPersonaService {
 
     @Autowired
     private FormacionRepository formaRepository;
+    
+    @Autowired
+    private ExperienciaRepository expoRepository;
             
     @Override
     public List<Persona> getPersonas() {
@@ -52,5 +57,8 @@ public class PersonaService implements IPersonaService {
     public void agregarFormacion(Formacion unaFormacion) {
         formaRepository.save(unaFormacion);
     }
-
+ @Override
+    public void agregarExperiencia(Experiencia unaExperiencia) {
+        expoRepository.save(unaExperiencia);
+    }
 }

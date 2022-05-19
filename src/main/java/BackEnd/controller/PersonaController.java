@@ -4,6 +4,7 @@
  */
 package BackEnd.controller;
 
+import BackEnd.model.Experiencia;
 import BackEnd.model.Formacion;
 import BackEnd.model.Persona;
 import BackEnd.service.IPersonaService;
@@ -76,11 +77,19 @@ public class PersonaController {
 
     @CrossOrigin
     @PostMapping("/personas/{id}/agregarFormacion")
-    public String agregarFormacion(@PathVariable Integer id,@RequestBody Formacion unaFormacion) {
+    public String agregarFormacion(@PathVariable Integer id, @RequestBody Formacion unaFormacion) {
         System.out.println(unaFormacion);
         unaFormacion.setId_persona(ServicioPersona.findPersona(id));
         ServicioPersona.agregarFormacion(unaFormacion);
         return "La formacion fue agregada correctamente";
     }
 
+    @CrossOrigin
+    @PostMapping("/personas/{id}/agregarExperiencia")
+    public String agregarExperiencia(@PathVariable Integer id, @RequestBody Experiencia unaExperiencia) {
+        System.out.println(unaExperiencia);
+        unaExperiencia.setId_persona(ServicioPersona.findPersona(id));
+        ServicioPersona.agregarExperiencia(unaExperiencia);
+        return "La experiencia fue agregada correctamente";
+    }
 }

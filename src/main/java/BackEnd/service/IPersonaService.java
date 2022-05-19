@@ -4,6 +4,7 @@
  */
 package BackEnd.service;
 
+import BackEnd.model.Experiencia;
 import BackEnd.model.Formacion;
 import BackEnd.model.Persona;
 import java.util.List;
@@ -24,4 +25,5 @@ public interface IPersonaService {
     
     public void agregarFormacion(Formacion unaFormacion);
     
+    public void agregarExperiencia(Experiencia unaExperiencia);
 }

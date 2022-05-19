@@ -59,7 +59,7 @@ public class FormacionController {
         return "La formacion fue eliminada correctamente";
     }
 
-    @PutMapping("/formacion/editar/{id}")
+   /* @PutMapping("/formacion/editar/{id}")
     public Formacion editFormacion(@PathVariable Integer id,
             @RequestParam("fecha_inicio") Date nuevaFechaInicio,
             @RequestParam("fecha_final") Date nuevaFechaFinal,
@@ -79,5 +79,5 @@ public class FormacionController {
 
         ServicioFormacion.saveFormacion(formacion);
         return formacion;
-    }
+    }*/
 }

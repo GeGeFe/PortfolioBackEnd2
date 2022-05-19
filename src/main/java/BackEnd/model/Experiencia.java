@@ -9,10 +9,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,26 +27,20 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Formacion implements Serializable {
-    public enum TipoFormacion {
-        Primaria, Secundaria, Terciaria, Universitaria, Curso_Capacitación;
-    }
-
+public class Experiencia implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id_educacion;
-    @Column(columnDefinition = "ENUM('Primaria', 'Secundaria', 'Terciaria', 'Universitaria', 'Curso_Capacitación')")
-    @Enumerated(EnumType.STRING)
-    private TipoFormacion Tipo;
-    private String Titulo;
+    private Integer id_experiencia;
+    private String Puesto;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date Fecha_Inicio;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date Fecha_Final;
-    private String Logo;
-    private String Institucion;
+    private String Logo_Empresa;
+    private String Nombre_Empresa;
+    private String Descripcion_Tareas;
 
-    // Por las dudas lo elimino también de acá: CascadeType.MERGE. No sé por que.
+    // Tuve que eliminar: CascadeType.MERGE. No sé por que.
     @OneToOne(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "id_disciplina")
     private Disciplina disciplina;
