@@ -49,14 +49,14 @@ public class FormacionController {
         mierda.setId_persona(1);
         formacion.setId_persona(mierda);*/
         ServicioFormacion.saveFormacion(formacion);
-        return "La formacion fue creada correctamente";
+        return "{}";
     }
 
     @CrossOrigin
     @DeleteMapping("/formacion/borrar/{id}")
     public String deleteFormacion(@PathVariable Integer id) {
         ServicioFormacion.deleteFormacion(id);
-        return "La formacion fue eliminada correctamente";
+        return "{}";
     }
 
    /* @PutMapping("/formacion/editar/{id}")

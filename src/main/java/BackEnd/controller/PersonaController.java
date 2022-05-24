@@ -47,13 +47,13 @@ public class PersonaController {
     public String createPersona(@RequestBody Persona perso) {
         System.out.println(perso);
         ServicioPersona.savePersona(perso);
-        return "La persona fue creada correctamente";
+        return "{}";
     }
 
     @DeleteMapping("/personas/borrar/{id}")
     public String deletePersona(@PathVariable Integer id) {
         ServicioPersona.deletePersona(id);
-        return "La persona fue eliminada correctamente";
+        return "{}";
     }
 
     @PutMapping("/personas/editar/{id}")
@@ -81,7 +81,7 @@ public class PersonaController {
         System.out.println(unaFormacion);
         unaFormacion.setId_persona(ServicioPersona.findPersona(id));
         ServicioPersona.agregarFormacion(unaFormacion);
-        return "La formacion fue agregada correctamente";
+        return "{}";
     }
 
     @CrossOrigin
@@ -90,6 +90,6 @@ public class PersonaController {
         System.out.println(unaExperiencia);
         unaExperiencia.setId_persona(ServicioPersona.findPersona(id));
         ServicioPersona.agregarExperiencia(unaExperiencia);
-        return "La experiencia fue agregada correctamente";
+        return "{}";
     }
 }
