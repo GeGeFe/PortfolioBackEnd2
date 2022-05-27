@@ -7,9 +7,11 @@ package BackEnd.service;
 import BackEnd.model.Experiencia;
 import BackEnd.model.Formacion;
 import BackEnd.model.Persona;
+import BackEnd.model.Proyecto;
 import BackEnd.repository.ExperienciaRepository;
 import BackEnd.repository.FormacionRepository;
 import BackEnd.repository.PersonaRepository;
+import BackEnd.repository.ProyectoRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,10 +28,13 @@ public class PersonaService implements IPersonaService {
 
     @Autowired
     private FormacionRepository formaRepository;
-    
+
     @Autowired
     private ExperienciaRepository expoRepository;
-            
+    
+    @Autowired
+    private ProyectoRepository proyRepository;
+
     @Override
     public List<Persona> getPersonas() {
         List<Persona> listaPersonas = persoRepository.findAll();
@@ -51,14 +56,19 @@ public class PersonaService implements IPersonaService {
         Persona perso = persoRepository.findById(id).orElse(null);
         return perso;
     }
-    
-    
+
     @Override
     public void agregarFormacion(Formacion unaFormacion) {
         formaRepository.save(unaFormacion);
     }
- @Override
+
+    @Override
     public void agregarExperiencia(Experiencia unaExperiencia) {
         expoRepository.save(unaExperiencia);
+    }
+
+    @Override
+    public void agregarProyecto(Proyecto unProyecto) {
+        proyRepository.save(unProyecto);
     }
 }

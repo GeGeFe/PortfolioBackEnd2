@@ -7,6 +7,7 @@ package BackEnd.service;
 import BackEnd.model.Experiencia;
 import BackEnd.model.Formacion;
 import BackEnd.model.Persona;
+import BackEnd.model.Proyecto;
 import java.util.List;
 
 /**
@@ -22,8 +23,10 @@ public interface IPersonaService {
     public void deletePersona(Integer id);
 
     public Persona findPersona(Integer id);
-    
+
     public void agregarFormacion(Formacion unaFormacion);
-    
+
     public void agregarExperiencia(Experiencia unaExperiencia);
+
+    public void agregarProyecto(Proyecto unProyecto);
 }

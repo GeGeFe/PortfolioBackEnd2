@@ -4,8 +4,8 @@
  */
 package BackEnd.controller;
 
-import BackEnd.model.Formacion;
-import BackEnd.service.IFormacionService;
+import BackEnd.model.Imagen;
+import BackEnd.service.IImagenService;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,32 +22,32 @@ import org.springframework.web.bind.annotation.RestController;
  * @author gabriel
  */
 @RestController
-public class FormacionController {
+public class ImagenController {
 
     @Autowired
-    private IFormacionService ServicioFormacion;
+    private IImagenService ServicioImagen;
 
-    @GetMapping("/formacion/traer")
-    public List<Formacion> getFormacion() {
-        return ServicioFormacion.getFormacion();
+    @GetMapping("/imagen/traer")
+    public List<Imagen> getImagen() {
+        return ServicioImagen.getImagen();
     }
 
-    @GetMapping("/formacion/traer/{id}")
-    public Formacion getFormacion(@PathVariable Integer id) {
-        return ServicioFormacion.findFormacion(id);
+    @GetMapping("/imagen/traer/{id}")
+    public Imagen getImagen(@PathVariable Integer id) {
+        return ServicioImagen.findImagen(id);
     }
 
     @CrossOrigin
-    @PostMapping("/formacion/crear")
-    public String createFormacion(@RequestBody Formacion formacion) {
-        ServicioFormacion.saveFormacion(formacion);
+    @PostMapping("/imagen/crear")
+    public String createImagen(@RequestBody Imagen imagen) {
+        ServicioImagen.saveImagen(imagen);
         return "{}";
     }
 
     @CrossOrigin
-    @DeleteMapping("/formacion/borrar/{id}")
-    public String deleteFormacion(@PathVariable Integer id) {
-        ServicioFormacion.deleteFormacion(id);
+    @DeleteMapping("/imagen/borrar/{id}")
+    public String deleteImagen(@PathVariable Integer id) {
+        ServicioImagen.deleteImagen(id);
         return "{}";
     }
 }

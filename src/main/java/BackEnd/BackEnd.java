@@ -39,17 +39,22 @@ public class BackEnd {
                     .antMatchers(HttpMethod.GET, "/personas/traer/*").permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/disciplina/traer").permitAll()
                     .antMatchers(HttpMethod.GET, "/disciplina/traer").permitAll()
-                    //                    .antMatchers(HttpMethod.OPTIONS, "/formacion/crear").permitAll()
-                    //                    .antMatchers(HttpMethod.POST, "/formacion/crear").permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/personas/*/agregarFormacion").permitAll()
                     .antMatchers(HttpMethod.POST, "/personas/*/agregarFormacion").permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/personas/*/agregarExperiencia").permitAll()
                     .antMatchers(HttpMethod.POST, "/personas/*/agregarExperiencia").permitAll()
-                    .antMatchers(HttpMethod.OPTIONS, "/formacion/borrar/*").permitAll()             
-                    .antMatchers(HttpMethod.DELETE, "/formacion/borrar/*").permitAll()                    
-                    .antMatchers(HttpMethod.OPTIONS, "/experiencia/borrar/*").permitAll()             
-                    .antMatchers(HttpMethod.DELETE, "/experiencia/borrar/*").permitAll()                    
+                    .antMatchers(HttpMethod.OPTIONS, "/personas/*/agregarProyecto").permitAll()
+                    .antMatchers(HttpMethod.POST, "/personas/*/agregarProyecto").permitAll()
+                    .antMatchers(HttpMethod.OPTIONS, "/formacion/borrar/*").permitAll()
+                    .antMatchers(HttpMethod.DELETE, "/formacion/borrar/*").permitAll()
+                    .antMatchers(HttpMethod.OPTIONS, "/experiencia/borrar/*").permitAll()
+                    .antMatchers(HttpMethod.DELETE, "/experiencia/borrar/*").permitAll()
+                    .antMatchers(HttpMethod.OPTIONS, "/proyecto/borrar/*").permitAll()
+                    .antMatchers(HttpMethod.DELETE, "/proyecto/borrar/*").permitAll()
+                    .antMatchers(HttpMethod.OPTIONS, "/imagen/crear").permitAll()
+                    .antMatchers(HttpMethod.DELETE, "/imagen/crear").permitAll()
                     .anyRequest().authenticated();
+            
             http.addFilterAfter(filtroAutorizacion, UsernamePasswordAuthenticationFilter.class);
         }
     }

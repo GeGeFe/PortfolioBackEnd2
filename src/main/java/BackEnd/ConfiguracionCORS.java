@@ -26,9 +26,9 @@ public class ConfiguracionCORS {
                 registry.addMapping("/**")
                         .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS")
                         .allowedOrigins("*")
-                        //.allowedHeaders("Content-Type", "Accept", "X-Requested-With", "remember-me", "Authorization")
+//.allowedHeaders("Content-Type", "Accept", "X-Requested-With", "remember-me", "Authorization")
                         .allowedHeaders("*")
-                        //                        .allowCredentials(false)
+//                        .allowCredentials(false)
 //                        .exposedHeaders("Access-Control-Allow-Origin: *")
                         ;
             }

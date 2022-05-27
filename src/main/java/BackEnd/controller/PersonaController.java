@@ -7,6 +7,7 @@ package BackEnd.controller;
 import BackEnd.model.Experiencia;
 import BackEnd.model.Formacion;
 import BackEnd.model.Persona;
+import BackEnd.model.Proyecto;
 import BackEnd.service.IPersonaService;
 import java.util.Date;
 import java.util.List;
@@ -70,6 +71,9 @@ public class PersonaController {
         perso.setApellido(nuevoApellido);
         perso.setNombre(nuevoNombre);
         perso.setFecha_Nacimiento(nuevaFecha);
+        perso.setBanner(nuevoBanner);
+        perso.setAvatar(nuevoAvatar);
+        perso.setAcerca_de(nuevoAcercade);
 
         ServicioPersona.savePersona(perso);
         return perso;
@@ -78,7 +82,6 @@ public class PersonaController {
     @CrossOrigin
     @PostMapping("/personas/{id}/agregarFormacion")
     public String agregarFormacion(@PathVariable Integer id, @RequestBody Formacion unaFormacion) {
-        System.out.println(unaFormacion);
         unaFormacion.setId_persona(ServicioPersona.findPersona(id));
         ServicioPersona.agregarFormacion(unaFormacion);
         return "{}";
@@ -87,9 +90,16 @@ public class PersonaController {
     @CrossOrigin
     @PostMapping("/personas/{id}/agregarExperiencia")
     public String agregarExperiencia(@PathVariable Integer id, @RequestBody Experiencia unaExperiencia) {
-        System.out.println(unaExperiencia);
         unaExperiencia.setId_persona(ServicioPersona.findPersona(id));
         ServicioPersona.agregarExperiencia(unaExperiencia);
+        return "{}";
+    }
+    
+    @CrossOrigin
+    @PostMapping("/personas/{id}/agregarProyecto")
+    public String agregarProyecto(@PathVariable Integer id, @RequestBody Proyecto unProyecto) {
+        unProyecto.setId_persona(ServicioPersona.findPersona(id));
+        ServicioPersona.agregarProyecto(unProyecto);
         return "{}";
     }
 }

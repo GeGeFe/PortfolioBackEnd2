@@ -4,8 +4,8 @@
  */
 package BackEnd.controller;
 
-import BackEnd.model.Formacion;
-import BackEnd.service.IFormacionService;
+import BackEnd.model.Proyecto;
+import BackEnd.service.IProyectoService;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,32 +22,32 @@ import org.springframework.web.bind.annotation.RestController;
  * @author gabriel
  */
 @RestController
-public class FormacionController {
+public class ProyectoController {
 
     @Autowired
-    private IFormacionService ServicioFormacion;
+    private IProyectoService ServicioProyecto;
 
-    @GetMapping("/formacion/traer")
-    public List<Formacion> getFormacion() {
-        return ServicioFormacion.getFormacion();
+    @GetMapping("/proyecto/traer")
+    public List<Proyecto> getProyecto() {
+        return ServicioProyecto.getProyecto();
     }
 
-    @GetMapping("/formacion/traer/{id}")
-    public Formacion getFormacion(@PathVariable Integer id) {
-        return ServicioFormacion.findFormacion(id);
+    @GetMapping("/proyecto/traer/{id}")
+    public Proyecto getProyecto(@PathVariable Integer id) {
+        return ServicioProyecto.findProyecto(id);
     }
 
     @CrossOrigin
-    @PostMapping("/formacion/crear")
-    public String createFormacion(@RequestBody Formacion formacion) {
-        ServicioFormacion.saveFormacion(formacion);
+    @PostMapping("/proyecto/crear")
+    public String createProyecto(@RequestBody Proyecto proyecto) {
+        ServicioProyecto.saveProyecto(proyecto);
         return "{}";
     }
 
     @CrossOrigin
-    @DeleteMapping("/formacion/borrar/{id}")
-    public String deleteFormacion(@PathVariable Integer id) {
-        ServicioFormacion.deleteFormacion(id);
+    @DeleteMapping("/proyecto/borrar/{id}")
+    public String deleteProyecto(@PathVariable Integer id) {
+        ServicioProyecto.deleteProyecto(id);
         return "{}";
     }
 }
