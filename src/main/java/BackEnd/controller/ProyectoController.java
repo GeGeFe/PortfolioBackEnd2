@@ -4,6 +4,8 @@
  */
 package BackEnd.controller;
 
+import BackEnd.model.Formacion;
+import BackEnd.model.Imagen;
 import BackEnd.model.Proyecto;
 import BackEnd.service.IProyectoService;
 import java.util.List;
@@ -50,4 +52,13 @@ public class ProyectoController {
         ServicioProyecto.deleteProyecto(id);
         return "{}";
     }
+    
+        @CrossOrigin
+    @PostMapping("/proyecto/{id}/agregarImagen")
+    public String agregarFormacion(@PathVariable Integer id, @RequestBody Imagen unaImagen) {
+        unaImagen.setId_proyecto(ServicioProyecto.findProyecto(id));
+        ServicioProyecto.agregarImagen(unaImagen);
+        return "{}";
+    }
+
 }

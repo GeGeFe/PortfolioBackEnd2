@@ -4,7 +4,9 @@
  */
 package BackEnd.service;
 
+import BackEnd.model.Imagen;
 import BackEnd.model.Proyecto;
+import BackEnd.repository.ImagenRepository;
 import BackEnd.repository.ProyectoRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class ProyectoService implements IProyectoService {
 
     @Autowired
     private ProyectoRepository proyectoRepository;
+    
+    @Autowired
+    private ImagenRepository imagenRepository;
 
     @Override
     public List<Proyecto> getProyecto() {
@@ -40,5 +45,10 @@ public class ProyectoService implements IProyectoService {
     public Proyecto findProyecto(Integer id) {
         Proyecto proyecto = proyectoRepository.findById(id).orElse(null);
         return proyecto;
+    }
+    
+        @Override
+    public void agregarImagen(Imagen unaImagen) {
+        imagenRepository.save(unaImagen);
     }
 }

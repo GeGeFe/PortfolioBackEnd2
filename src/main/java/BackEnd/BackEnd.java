@@ -51,8 +51,10 @@ public class BackEnd {
                     .antMatchers(HttpMethod.DELETE, "/experiencia/borrar/*").permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/proyecto/borrar/*").permitAll()
                     .antMatchers(HttpMethod.DELETE, "/proyecto/borrar/*").permitAll()
-                    .antMatchers(HttpMethod.OPTIONS, "/imagen/crear").permitAll()
-                    .antMatchers(HttpMethod.DELETE, "/imagen/crear").permitAll()
+                    .antMatchers(HttpMethod.OPTIONS, "/proyecto/*/agregarImagen").permitAll()
+                    .antMatchers(HttpMethod.POST, "/proyecto/*/agregarImagen").permitAll()
+                    .antMatchers(HttpMethod.OPTIONS, "/imagen/borrar/*").permitAll()
+                    .antMatchers(HttpMethod.DELETE, "/imagen/borrar/*").permitAll()
                     .anyRequest().authenticated();
             
             http.addFilterAfter(filtroAutorizacion, UsernamePasswordAuthenticationFilter.class);

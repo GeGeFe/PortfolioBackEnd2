@@ -4,6 +4,7 @@
  */
 package BackEnd.service;
 
+import BackEnd.model.Imagen;
 import BackEnd.model.Proyecto;
 import java.util.List;
 
@@ -20,4 +21,7 @@ public interface IProyectoService {
     public void deleteProyecto(Integer id);
 
     public Proyecto findProyecto(Integer id);
+    
+    public void agregarImagen(Imagen unaImagen);
+
 }
