@@ -45,6 +45,8 @@ public class BackEnd {
                     .antMatchers(HttpMethod.POST, "/personas/*/agregarExperiencia").permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/personas/*/agregarProyecto").permitAll()
                     .antMatchers(HttpMethod.POST, "/personas/*/agregarProyecto").permitAll()
+                    .antMatchers(HttpMethod.OPTIONS, "/personas/*/agregarHabilidad").permitAll()
+                    .antMatchers(HttpMethod.POST, "/personas/*/agregarHabilidad").permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/formacion/borrar/*").permitAll()
                     .antMatchers(HttpMethod.DELETE, "/formacion/borrar/*").permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/experiencia/borrar/*").permitAll()
@@ -55,6 +57,8 @@ public class BackEnd {
                     .antMatchers(HttpMethod.POST, "/proyecto/*/agregarImagen").permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/imagen/borrar/*").permitAll()
                     .antMatchers(HttpMethod.DELETE, "/imagen/borrar/*").permitAll()
+                    .antMatchers(HttpMethod.OPTIONS, "/habilidad/borrar/*").permitAll()
+                    .antMatchers(HttpMethod.DELETE, "/habilidad/borrar/*").permitAll()
                     .anyRequest().authenticated();
             
             http.addFilterAfter(filtroAutorizacion, UsernamePasswordAuthenticationFilter.class);

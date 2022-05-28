@@ -6,10 +6,12 @@ package BackEnd.service;
 
 import BackEnd.model.Experiencia;
 import BackEnd.model.Formacion;
+import BackEnd.model.Habilidad;
 import BackEnd.model.Persona;
 import BackEnd.model.Proyecto;
 import BackEnd.repository.ExperienciaRepository;
 import BackEnd.repository.FormacionRepository;
+import BackEnd.repository.HabilidadRepository;
 import BackEnd.repository.PersonaRepository;
 import BackEnd.repository.ProyectoRepository;
 import java.util.List;
@@ -31,9 +33,12 @@ public class PersonaService implements IPersonaService {
 
     @Autowired
     private ExperienciaRepository expoRepository;
-    
+
     @Autowired
     private ProyectoRepository proyRepository;
+
+    @Autowired
+    private HabilidadRepository habilRepository;
 
     @Override
     public List<Persona> getPersonas() {
@@ -71,4 +76,10 @@ public class PersonaService implements IPersonaService {
     public void agregarProyecto(Proyecto unProyecto) {
         proyRepository.save(unProyecto);
     }
+
+    @Override
+    public void agregarHabilidad(Habilidad unaHabilidad) {
+        habilRepository.save(unaHabilidad);
+    }
+
 }

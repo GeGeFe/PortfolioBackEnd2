@@ -6,6 +6,7 @@ package BackEnd.controller;
 
 import BackEnd.model.Experiencia;
 import BackEnd.model.Formacion;
+import BackEnd.model.Habilidad;
 import BackEnd.model.Persona;
 import BackEnd.model.Proyecto;
 import BackEnd.service.IPersonaService;
@@ -94,12 +95,20 @@ public class PersonaController {
         ServicioPersona.agregarExperiencia(unaExperiencia);
         return "{}";
     }
-    
+
     @CrossOrigin
     @PostMapping("/personas/{id}/agregarProyecto")
     public String agregarProyecto(@PathVariable Integer id, @RequestBody Proyecto unProyecto) {
         unProyecto.setId_persona(ServicioPersona.findPersona(id));
         ServicioPersona.agregarProyecto(unProyecto);
+        return "{}";
+    }
+
+    @CrossOrigin
+    @PostMapping("/personas/{id}/agregarHabilidad")
+    public String agregarHabilidad(@PathVariable Integer id, @RequestBody Habilidad unaHabilidad) {
+        unaHabilidad.setId_persona(ServicioPersona.findPersona(id));
+        ServicioPersona.agregarHabilidad(unaHabilidad);
         return "{}";
     }
 }

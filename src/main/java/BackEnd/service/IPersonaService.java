@@ -6,6 +6,7 @@ package BackEnd.service;
 
 import BackEnd.model.Experiencia;
 import BackEnd.model.Formacion;
+import BackEnd.model.Habilidad;
 import BackEnd.model.Persona;
 import BackEnd.model.Proyecto;
 import java.util.List;
@@ -29,4 +30,6 @@ public interface IPersonaService {
     public void agregarExperiencia(Experiencia unaExperiencia);
 
     public void agregarProyecto(Proyecto unProyecto);
+    
+    public void agregarHabilidad(Habilidad unaHabilidad);
 }

@@ -60,4 +60,8 @@ public class Persona implements Serializable {
     @JsonManagedReference
     @OneToMany(mappedBy = "id_persona", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Proyecto> proyectos;
+    
+    @JsonManagedReference
+    @OneToMany(mappedBy = "id_persona", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Habilidad> habilidades;
 }
