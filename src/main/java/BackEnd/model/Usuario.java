@@ -4,46 +4,25 @@
  */
 package BackEnd.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  *
  * @author gabriel
  */
+@Getter
+@Setter
+@Entity
 public class Usuario {
 
+    @Id
     String username;
     String password;
     String token;
 
-    public Usuario() {
-    }
-
-    public Usuario(String username, String password) {
-        this.username = username;
-        this.password = password;
-        this.token = "";
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getToken() {
-        return this.token;
-    }
 }
