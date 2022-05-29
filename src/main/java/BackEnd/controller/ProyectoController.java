@@ -4,7 +4,6 @@
  */
 package BackEnd.controller;
 
-import BackEnd.model.Formacion;
 import BackEnd.model.Imagen;
 import BackEnd.model.Proyecto;
 import BackEnd.service.IProyectoService;
@@ -53,7 +52,7 @@ public class ProyectoController {
         return "{}";
     }
     
-        @CrossOrigin
+    @CrossOrigin
     @PostMapping("/proyecto/{id}/agregarImagen")
     public String agregarFormacion(@PathVariable Integer id, @RequestBody Imagen unaImagen) {
         unaImagen.setId_proyecto(ServicioProyecto.findProyecto(id));

@@ -41,13 +41,13 @@ public class ExperienciaController {
     @PostMapping("/experiencia/crear")
     public String createExperiencia(@RequestBody Experiencia experiencia) {
         ServicioExperiencia.saveExperiencia(experiencia);
-        return "La experiencia fue creada correctamente";
+        return "{}";
     }
 
     @CrossOrigin
     @DeleteMapping("/experiencia/borrar/{id}")
     public String deleteExperiencia(@PathVariable Integer id) {
         ServicioExperiencia.deleteExperiencia(id);
-        return "La experiencia fue eliminada correctamente";
+        return "{}";
     }
 }

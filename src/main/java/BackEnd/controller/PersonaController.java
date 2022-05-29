@@ -58,26 +58,20 @@ public class PersonaController {
         return "{}";
     }
 
-    @PutMapping("/personas/editar/{id}")
-    public Persona editPersona(@PathVariable Integer id,
-            @RequestParam("nombre") String nuevoNombre,
-            @RequestParam("apellido") String nuevoApellido,
-            @RequestParam("fecha_nacimiento") Date nuevaFecha,
-            @RequestParam("banner") String nuevoBanner,
-            @RequestParam("avatar") String nuevoAvatar,
-            @RequestParam("acerca_de") String nuevoAcercade
-    ) {
+    @CrossOrigin
+    @PostMapping("/personas/editar/{id}")
+    public String editPersona(@PathVariable Integer id, @RequestBody Persona unapersona) {
         Persona perso = ServicioPersona.findPersona(id);
 
-        perso.setApellido(nuevoApellido);
-        perso.setNombre(nuevoNombre);
-        perso.setFecha_Nacimiento(nuevaFecha);
-        perso.setBanner(nuevoBanner);
-        perso.setAvatar(nuevoAvatar);
-        perso.setAcerca_de(nuevoAcercade);
+        perso.setApellido(unapersona.getApellido());
+        perso.setNombre(unapersona.getNombre());
+        perso.setFecha_Nacimiento(unapersona.getFecha_Nacimiento());
+        perso.setBanner(unapersona.getBanner());
+        perso.setAvatar(unapersona.getAvatar());
+        perso.setAcerca_de(unapersona.getAcerca_de());
 
         ServicioPersona.savePersona(perso);
-        return perso;
+        return "{}";
     }
 
     @CrossOrigin

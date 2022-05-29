@@ -42,7 +42,7 @@ public class Proyecto implements Serializable {
     private String Enlace;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "id_proyecto", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "id_proyecto", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
     private List<Imagen> Imagenes;
 
     // Por las dudas lo elimino también de acá: CascadeType.MERGE. No sé por que.

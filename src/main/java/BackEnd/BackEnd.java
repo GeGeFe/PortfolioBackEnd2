@@ -31,8 +31,10 @@ public class BackEnd {
         protected void configure(HttpSecurity http) throws Exception {
             http.csrf().disable()
                     .authorizeRequests()
-                    .antMatchers(HttpMethod.POST, "/sesionInicio").permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/sesionInicio").permitAll()
+                    .antMatchers(HttpMethod.POST, "/sesionInicio").permitAll()
+                    .antMatchers(HttpMethod.OPTIONS, "/personas/editar/*").permitAll()
+                    .antMatchers(HttpMethod.POST, "/personas/editar/*").permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/personas/traer").permitAll()
                     .antMatchers(HttpMethod.GET, "/personas/traer").permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/personas/traer/*").permitAll()
