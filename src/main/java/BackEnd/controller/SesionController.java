@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  *
@@ -39,9 +40,9 @@ public class SesionController {
     private int expiration;
 
     @PostMapping("/sesionInicio")
-    public Usuario sesion(@RequestBody Usuario miusuario) {
+    public Usuario sesionInicio(@RequestBody Usuario miusuario) {
 
-        if (ServicioUsuario.verificaUsuario(miusuario)){
+        if (ServicioUsuario.verificaUsuario(miusuario)) {
             List<GrantedAuthority> grantedAuthorities = AuthorityUtils
                     .commaSeparatedStringToAuthorityList("ROLE_USER");
 
@@ -61,5 +62,26 @@ public class SesionController {
         } else {
             return null;
         }
+    }
+
+    @CrossOrigin
+    @PostMapping("/sesionInicioIrrestricto")
+    public Usuario sesionInicioIrrestricto(@RequestBody Usuario miusuario) {
+        List<GrantedAuthority> grantedAuthorities = AuthorityUtils
+                .commaSeparatedStringToAuthorityList("ROLE_USER");
+
+        String token = "Bearer " + Jwts.builder()
+                .setId("softtekJWT")
+                .setSubject(miusuario.getUsername())
+                .claim("authorities",
+                        grantedAuthorities.stream()
+                                .map(GrantedAuthority::getAuthority)
+                                .collect(Collectors.toList()))
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .signWith(SignatureAlgorithm.HS512,
+                        SECRET.getBytes()).compact();
+        miusuario.setToken(token);
+        return miusuario;
     }
 }
