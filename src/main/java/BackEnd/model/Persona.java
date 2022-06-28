@@ -38,8 +38,10 @@ public class Persona implements Serializable {
     private String Banner;
     private String Avatar;
     private String Acerca_de;
+    private String Contacto;
 
     public Persona() {
+        this.Contacto = "";
         this.Acerca_de = "";
         this.Apellido = "";
         this.Avatar = "";
@@ -56,11 +58,11 @@ public class Persona implements Serializable {
     @JsonManagedReference
     @OneToMany(mappedBy = "id_persona", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Experiencia> experiencia;
-    
+
     @JsonManagedReference
     @OneToMany(mappedBy = "id_persona", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Proyecto> proyectos;
-    
+
     @JsonManagedReference
     @OneToMany(mappedBy = "id_persona", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Habilidad> habilidades;

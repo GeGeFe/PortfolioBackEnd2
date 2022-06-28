@@ -69,6 +69,7 @@ public class PersonaController {
         perso.setBanner(unapersona.getBanner());
         perso.setAvatar(unapersona.getAvatar());
         perso.setAcerca_de(unapersona.getAcerca_de());
+        perso.setContacto(unapersona.getContacto());
 
         ServicioPersona.savePersona(perso);
         return "{}";
